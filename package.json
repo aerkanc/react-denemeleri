@@ -10,6 +10,7 @@
     "stylelint-config-standard": "^18.0.0"
   },
   "devDependencies": {
+    "codecov": "^3.0.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "enzyme-to-json": "^3.3.1",
@@ -32,7 +33,7 @@
     "format": "prettier --print-width=100 --single-quote --trailing-comma=all --write \"{src,src/__tests__}/**/*.js\"",
     "test": "react-scripts test --env=jsdom",
     "coverage": "yarn run test -- --coverage --collectCoverageFrom=src/**/*.js --collectCoverageFrom=!src/index.js --collectCoverageFrom=!src/setupTests.js --collectCoverageFrom=!src/registerServiceWorker.js",
-    "postcoverage":"istanbul check-coverage --statements 90 --functions 90 --branches 90 --lines 90",
+    "postcoverage": "istanbul check-coverage --statements 90 --functions 90 --branches 90 --lines 90",
     "test:ci": "yarn run lint && CI=true yarn run test && yarn run coverage",
     "eject": "react-scripts eject"
   },

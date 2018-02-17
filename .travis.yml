@@ -12,3 +12,6 @@ cache: yarn
 
 script:
   - yarn run test:ci
+
+after_success:
+  - codecov
