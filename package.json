@@ -9,30 +9,43 @@
     "stylelint": "^8.4.0",
     "stylelint-config-standard": "^18.0.0"
   },
+  "devDependencies": {
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.6.1",
+    "istanbul": "^0.4.5",
+    "lint-staged": "^6.1.1",
+    "pre-commit": "^1.2.2",
+    "react-test-renderer": "^16.2.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "lint:eslint": "eslint .",
     "lint:stylelint": "stylelint *.css",
     "lint": "yarn run lint:eslint && yarn run lint:stylelint",
-    "lint-staged":"lint-staged",
-    "format":"pretier --print-width=100 --single-quote --trailing-comma=all --write \"{src,__tests}\"",
+    "lint-staged": "lint-staged",
+    "format": "prettier --print-width=100 --single-quote --trailing-comma=all --write \"{src,src/__tests__}/**/*.js\"",
     "test": "react-scripts test --env=jsdom",
+    "coverage": "yarn run test -- --coverage --collectCoverageFrom=src/**/*.js --collectCoverageFrom=!src/index.js --collectCoverageFrom=!src/setupTests.js --collectCoverageFrom=!src/registerServiceWorker.js",
+    "postcoverage":"istanbul check-coverage --statements 90 --functions 90 --branches 90 --lines 90",
+    "test:ci": "yarn run lint && CI=true yarn run test && yarn run coverage",
     "eject": "react-scripts eject"
   },
-  "lint-staged":{
-    "*.js":[
+  "lint-staged": {
+    "*.js": [
       "yarn run format",
       "git add"
     ]
   },
-  "pre-commit":"lint-staged",
-  "devDependencies": {
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.6.1",
-    "lint-staged": "^6.1.1",
-    "pre-commit": "^1.2.2"
+  "pre-commit": "lint-staged",
+  "jest": {
+    "snapshotSerializers": [
+      "<rootDir>/node_modules/enzyme-to-json/serializer"
+    ]
   }
 }
