@@ -14,13 +14,25 @@
     "build": "react-scripts build",
     "lint:eslint": "eslint .",
     "lint:stylelint": "stylelint *.css",
+    "lint": "yarn run lint:eslint && yarn run lint:stylelint",
+    "lint-staged":"lint-staged",
+    "format":"pretier --print-width=100 --single-quote --trailing-comma=all --write \"{src,__tests}\"",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
+  "lint-staged":{
+    "*.js":[
+      "yarn run format",
+      "git add"
+    ]
+  },
+  "pre-commit":"lint-staged",
   "devDependencies": {
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.6.1"
+    "eslint-plugin-react": "^7.6.1",
+    "lint-staged": "^6.1.1",
+    "pre-commit": "^1.2.2"
   }
 }
